@@ -6,19 +6,20 @@ Banki
 
 ## Project Summary
 
-> we're building a fake bank from the users side. it will include your current balance, ways to send money through waltie service. you can also create a new account. 
+> We're building a prototype of a bank site. it will include your current balance, ways to send money through waltie service. you can also create a new account. We are not yet a real bank and do not have the ability to manage your money" "This is a prototype and concept of a digital bank"
+
 
 ## Developers
 
-- Developer 1: Role
+- Developer 1: Makah
   - Portfolio
   - Github
   - LinkedIn
-- Developer 2: Role
+- Developer 2: Chae
   - Portfolio
   - Github
   - LinkedIn
-- Developer 3: Role
+- Developer 3: Zaid
   - Portfolio
   - Github
   - LinkedIn
