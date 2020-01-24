@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+-- Creates the "banki" database --
+CREATE DATABASE banki;
+=======
 -- Drop the banki if it exists--
 
 DROP DATABASE IF EXEISTS banki;
@@ -22,3 +26,4 @@ PRIMARY KEY ( `id` )
 
 
 
+>>>>>>> d1e4b8584070bee6d63c006e07e173f4d859d17e
