@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //loginserver
 
 
@@ -6,6 +5,8 @@ var express= require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport= require("./config/passport");
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 var PORT = process.env.PORT || 1998;
 var db= require("./models");
@@ -23,36 +24,6 @@ app.use(passport.session());
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-
-db.sequelize.sync().then(function()
-{
-    app.listen(PORT, function(){
-    console.log("App listening on PORT", PORT, PORT);
-
-});
-
-});
-=======
-const express = require('express');
-
-const app = express();
-
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-
-const PORT = process.env.PORT || 8080;
-
-app.use(express.urlencoded({
-    extended: true
-}));
-app.use(express.json());
-
-// not sure if the next line is required or what it is for 
-app.use(express.static(__dirname + '/public'));
-
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
 io.on('connection', function (socket) {
     console.log('a user connected');
     socket.on('disconnect', function () {
@@ -62,7 +33,19 @@ io.on('connection', function (socket) {
 });
 
 
-server.listen(PORT, function () {
-    console.log('app listening on PORT: ' + PORT);
+db.sequelize.sync().then(function()
+{
+    app.listen(PORT, function(){
+    console.log("App listening on PORT" + PORT);
+
 });
->>>>>>> 144fcaa04d33e0612abb7211962a73e0123ca5ad
+
+});
+
+
+
+
+
+
+
+
