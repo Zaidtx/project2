@@ -1,4 +1,5 @@
 {
+
     "development": {
       "username": "root",
       "password": "Makah1998",
@@ -23,7 +24,7 @@
       "dialect": "mysql",
       "operatorsAliases": false
     }
-  }
+
   
   
   
