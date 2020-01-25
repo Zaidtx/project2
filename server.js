@@ -28,8 +28,8 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 // Requiring our routes
-require("./routes/html-routes")(app);
-require("./routes/api-routes")(app);
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
 io.on('connection', function (socket) {
     console.log('a user connected');
