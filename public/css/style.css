@@ -318,10 +318,14 @@ body{
   }
 
 
+
   /* feedback page */
   
   
+  /* styly for feedback page */
+
   .feedback  {
+
     height: 200px;
     width: 400px;
     background: rgb(255, 253, 253);
@@ -331,5 +335,6 @@ body{
     left: 50%;
     margin-top: -300px;
     margin-left: -200px;
+
 }
-    
+

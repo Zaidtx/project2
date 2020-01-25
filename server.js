@@ -1,3 +1,4 @@
+
 //loginserver
 
 
@@ -31,6 +32,7 @@ db.sequelize.sync().then(function()
 });
 
 });
+
 const express = require('express');
 
 const app = express();
