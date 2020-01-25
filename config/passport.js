@@ -1,13 +1,9 @@
-
 //
 //
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var db = require("../models");
 // so we can login with the username/email and password
-
-
-
 passport.use(new LocalStrategy(
     {
         usernameField:"email"
@@ -20,7 +16,7 @@ passport.use(new LocalStrategy(
                 email:email
             }
         }).then(function(dbuser){
-
+            //incorrect email if we can't find the email.
             if(!dbuser){
                 return done(null, false,{
                     message:"incorrect email. try again"
@@ -32,12 +28,10 @@ passport.use(new LocalStrategy(
                      message:"incorrect password. try again"
                  });
              }
-
              //if non return the user
              return done(null, dbuser);
             });
         }
-
 ));
 //this part so the above part can work "sequelize and http requests"
 passport.serializeUser(function(use, cb){
@@ -56,10 +50,3 @@ passport.deserializeUser(function(obj, cb){
 
 
 
-
-        
-        
-
-    
-    
-    

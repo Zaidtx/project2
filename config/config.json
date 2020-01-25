@@ -1,13 +1,13 @@
 {
-
     "development": {
       "username": "root",
-      "password": "Makah1998",
-      "database": "passport_db",
+      "password": "JayPark0*",
+      "database": "passport_db" "banki",
       "host": "127.0.0.1",
       "dialect": "mysql",
       "operatorsAliases": false
     },
+    
     "test": {
       "username": "root",
       "password": null,
@@ -24,7 +24,7 @@
       "dialect": "mysql",
       "operatorsAliases": false
     }
-
+  }
   
   
   
