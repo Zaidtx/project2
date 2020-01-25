@@ -1,4 +1,7 @@
 var bcrypt= require("bcrypt-nodejs")
+const sequelize = require('../config/connection.js');
+const Sequelize = require('sequelize')
+
 module.exports = function(sequelize, DataTypes){
     var user= sequelize.define("user", {
         email:{
