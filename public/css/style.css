@@ -316,3 +316,20 @@ body{
     color: black;
     size: 50%;
   }
+
+
+  /* feedback page */
+  
+  
+  .feedback  {
+    height: 200px;
+    width: 400px;
+    background: rgb(255, 253, 253);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -200px;
+}
+    
