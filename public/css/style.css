@@ -304,6 +304,7 @@ input:checked+.slider:before {
 
 
 
+<<<<<<< HEAD
 
 /* makah */
 body{
@@ -321,6 +322,9 @@ body{
   /* styly for feedback page */
 
   .feedback  {
+=======
+.feedback  {
+>>>>>>> 91c729cc0e4ef5ecc74ed17269d73111bb4288af
     height: 200px;
     width: 400px;
     background: rgb(255, 253, 253);
@@ -330,4 +334,9 @@ body{
     left: 50%;
     margin-top: -300px;
     margin-left: -200px;
+<<<<<<< HEAD
 }
+=======
+}
+    
+>>>>>>> 91c729cc0e4ef5ecc74ed17269d73111bb4288af

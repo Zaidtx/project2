@@ -1,6 +1,7 @@
+node_modules/
+.vscode
+.idea/
+.DS_Store
 
-node_modules
-readme
-config/config.json
 
 
