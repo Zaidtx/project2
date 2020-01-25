@@ -1,3 +1,4 @@
+//loginserver
 const express = require('express');
 const sequelize = require('sequelize');
 const db = require('./models');
@@ -9,28 +10,26 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:false}));
+// app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
 
-// not sure if the next line is required or what it is for 
-app.use(express.static(__dirname + '/public'));
-
-require("./routes/apiRoutes")(app);
+// Requiring our routes
 require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
 io.on('connection', function (socket) {
     console.log('a user connected');
