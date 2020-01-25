@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //loginserver
 
 
@@ -32,7 +31,6 @@ db.sequelize.sync().then(function()
 });
 
 });
-=======
 const express = require('express');
 
 const app = express();
@@ -65,4 +63,3 @@ io.on('connection', function (socket) {
 server.listen(PORT, function () {
     console.log('app listening on PORT: ' + PORT);
 });
->>>>>>> 144fcaa04d33e0612abb7211962a73e0123ca5ad
