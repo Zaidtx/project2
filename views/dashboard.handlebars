@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-us">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Banki</title>
-
-    <!-- css file -->
-    <link rel="stylesheet" href="./css/style.css" />
-    <!-- bootstrap css -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- bootstrap jquery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- table2excel -->
-    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-</head>
-
-
-<body style="background-color:whitesmoke">
     <!-- nav bar one -->
+
+        <link rel="stylesheet" href="../../public/style.css">
+    
     <ul id="bar-one">
         <div class="topnav-center">
             <a>BANKI</a>
         </div>
         <div class="topnav-right">
-            <a>Logout</a>
+            <a type = "button" class = "btn btn-default" href = "./logout">LOG OUT </a>
         </div>
     </ul>
 
@@ -106,51 +87,5 @@
 </body>
 
 
-<script>
-    $('#account-page').on('click', function () {
-        location.href = 'home_page.html';
-    });
-    $('#account-create-page').on('click', function () {
-        location.href = 'account_create_page.html';
-    });
-    $('#transfer-page').on('click', function () {
-        location.href = 'transfer_page.html';
-    });
 
-    // live search code input
-    $(document).ready(function () {
-        $('#transaction-query').keyup(function () {
-            // $('#result').html('');
-            let searchField = $('#transaction-query').val();
-            let expression = new RegExp(searchField, 'i');
-
-            // how can I have the th stay?
-            // $(this).prepend(
-            //     '<tr><td>' + 'Transaction' + '</td>' +
-            //     '<td>' + 'Amount' + '</td>' +
-            //     '<td>' + 'Balance' + '</td></tr>'
-            // )
-            $('table tr').each(function () {
-                if ($(this).text().search(expression) < 0) {
-                    $(this).fadeOut();
-                } else {
-                    $(this).show();
-                }
-            });
-
-        });
-    });
-
-
-    // export transactions table into excel with jquery
-    $('#table-export').on('click', function () {
-        $('#table-data').table2excel({
-            name: "User Complete Transactions",
-            filename: 'Transactions',
-            fileext: '.xls',
-            preserveColors: true
-        });
-    });
-</script>
-
-</html>
+ 
