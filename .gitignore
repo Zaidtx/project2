@@ -1,6 +1,6 @@
 
 node_modules
-readme
-**/config.json
+config/config.json
+.env
 
 
