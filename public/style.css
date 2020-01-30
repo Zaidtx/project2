@@ -7,9 +7,9 @@ body {
     
     
    
-    height: 20%; 
+    height: 18%; 
 
-width: 100%;
+width: 90%;
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -40,8 +40,8 @@ width: 100%;
     background-image: url(./images/ozy_discover_infographic_debit_credit_r3_28129.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 262%;
-    width: 262%;
+    height: 90%;
+    width: 110%;
     
 }
 .abutahoun{
@@ -81,7 +81,7 @@ width: 100%;
     font-size: large;
    color: white;
     text-align: center;
-    margin-left: 50%;
+    margin-left: 90%;
   
     height: 70%;
     width: 70%;
