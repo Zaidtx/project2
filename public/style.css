@@ -1,19 +1,30 @@
 
 
-body {
+body.home{background-image:url(./images/Screen\ Shot\ 2020-01-30\ at\ 1.19.08\ PM.png);
     
-   
-    background-image: url(./images/Screen\ Shot\ 2020-01-30\ at\ 1.19.08\ PM.png);
-    
-    
-   
     height: 18%; 
 
-width: 90%;
+width: 80%;
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
    
+
+}
+
+body.login{
+    background-image: url(./images/login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+body.makah{
+    background-image: url(./images/ozy_discover_infographic_debit_credit_r3_28129.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 
 }
 #first{
@@ -36,23 +47,8 @@ width: 90%;
     margin-bottom: 40%;
     
 }
-.makah{
-    background-image: url(./images/ozy_discover_infographic_debit_credit_r3_28129.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 90%;
-    width: 110%;
-    
-}
-.abutahoun{
-    background-image: url(./images/login.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 900px;
-    width: 1000%;
 
 
-}
 .alert {
     padding: 20px;
     background-color: #f44336; /* Red */
@@ -80,7 +76,7 @@ width: 90%;
 #signin{
     font-size: large;
    color: white;
-    text-align: center;
+   
     margin-left: 90%;
   
     height: 70%;
