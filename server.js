@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
 
-app.use(express.static("public"));
+app.use(express.static("public" ));
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -36,9 +36,16 @@ app.set(`view engine`, `handlebars`);
  
 app.get('/', function(req, res) {
 
-    res.render('login');
+    res.render('first');
 
 });
+app.get('/login', function(req, res) {
+
+    res.render('login');
+
+ 
+});
+
 app.get('/signup', function(req, res) {
 
     res.render('signup');
@@ -58,6 +65,8 @@ app.get('/logout', function(req, res) {
 
  
 });
+
+
 
  
 //Models

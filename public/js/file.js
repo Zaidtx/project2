@@ -41,5 +41,7 @@
             filename: 'Transactions',
             fileext: '.xls',
             preserveColors: true
+            
         });
     });
+    
