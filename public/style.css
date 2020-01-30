@@ -3,13 +3,13 @@
 body {
     
    
-    background-image: url(./images/makah.jpg);
+    background-image: url(./images/Screen\ Shot\ 2020-01-30\ at\ 1.19.08\ PM.png);
     
     
    
-    height: 7%; 
+    height: 38%; 
 
-width: 70%;
+width: 38%;
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,6 +22,7 @@ width: 70%;
     height: 128px;
     width: 42%;
     background-repeat: no-repeat;
+    margin-top: 50px;
    
   
 }
@@ -32,16 +33,36 @@ width: 70%;
     height: 200px;
     width: 42%;
     background-repeat: no-repeat;
+    margin-bottom: 40%;
     
+}
+.makah{
+    background-image: url(./images/ozy_discover_infographic_debit_credit_r3_28129.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 262%;
+    width: 262%;
+    
+}
+.abutahoun{
+    background-image: url(./images/login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 900px;
+    width: 1000%;
+
+
 }
 .alert {
     padding: 20px;
     background-color: #f44336;
     color: white;
+    width: 100%;
+    height: 100%;
   }
 .closebtn {
     margin-left: 15px;
-    color: white;
+    color: rgb(219, 177, 177);
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -49,6 +70,8 @@ width: 70%;
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 70%;
+   height: 100%;
+ 
   }
   
   .closebtn:hover {
@@ -57,9 +80,12 @@ width: 70%;
 
 #signin{
     font-size: large;
-   color: darkred;
+   color: white;
     text-align: center;
     margin-left: 50%;
+  
+    height: 70%;
+    width: 70%;
     
 
 
@@ -69,7 +95,9 @@ width: 70%;
      text-align: center;
 
 }
-
+#logout{
+    color: #f44336;
+}
 
 #btnin{
     color: rgb(231, 135, 111);
@@ -107,7 +135,7 @@ p {
 .topnav-center {
     text-align: center;
     background-color: transparent;
-    color: white;
+    color: rgb(173, 125, 125);
     font-weight: bolder;
     
 }
@@ -116,7 +144,7 @@ p {
     float: right;
     background-image: none;
     background-color: transparent;
-    color: white;
+    color: rgb(158, 116, 116);
     padding-right: 20px;
 
 }
@@ -161,7 +189,7 @@ li a:hover {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
+    background-color: rgb(184, 144, 144);
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .2);
     margin-top: -15px;
 
@@ -189,7 +217,7 @@ div {
     border: solid;
     border-width: 1px;
     justify-content: space-between;
-    background-color: white;
+    background-color: rgb(185, 157, 157);
    color: black;
 }
 
@@ -216,7 +244,7 @@ div {
 #savings-box {
     height: 25%;
     color: #e9cbcb;
-    background-color: white;    
+    background-color: rgb(238, 229, 229);    
 }
 
 #help-box,
