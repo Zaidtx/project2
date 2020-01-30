@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
 
- 
+app.use(express.static("public"));
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -73,7 +73,7 @@ var authRoute = require('./app/routes/auth.js')(app, passport);
  
 require('./app/config/passport/passport.js')(passport, models.user);
  
-app.use(express.static(__dirname +'/public'))
+
 //Sync Database
  
 models.sequelize.sync().then(function() {
