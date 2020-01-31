@@ -6,7 +6,20 @@ var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
 
-app.use(express.static("public" ));
+var TeleSignSDK = require('telesignsdk');
+var client  = new TeleSignSDK("13627871-8397-47F8-9C50-4E710B3CC1DE", "GNM5wQGLCETZoz6qlhVnGj5HN4dme131t7fxaE2E2m+G28k/mIRAiBedaA6Ix8DPOr03R98mQl/2O0yYnpUvfQ==");
+
+callback = function(err, resBody){
+    if(err){
+        console.log(err)
+    }else{
+        console.log("success!!");
+        console.log(resBody);
+    }
+}
+
+
+app.use(express.static(__dirname+ "/public" ));
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -40,6 +53,8 @@ app.get('/', function(req, res) {
 
 });
 app.get('/login', function(req, res) {
+    client.sms.message(callback,"+18329023510", "Someone logged in into your account", "MKT" );
+ 
 
     res.render('login');
 
@@ -47,6 +62,8 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/signup', function(req, res) {
+    client.sms.message(callback,"+18329023510", "thank you for signing up", "MKT" );
+
 
     res.render('signup');
 
@@ -84,6 +101,7 @@ require('./app/config/passport/passport.js')(passport, models.user);
  
 
 //Sync Database
+
  
 models.sequelize.sync().then(function() {
  
@@ -95,7 +113,8 @@ models.sequelize.sync().then(function() {
     console.log(err, "Something went wrong with the Database Update!")
  
 });
- 
+
+
  const PORT = process.env.PORT || 3000
 app.listen(PORT , function(err) {
  
