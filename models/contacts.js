@@ -1,13 +1,14 @@
+const Sequelize = require('sequelize');
 const sequelize = require('../config/connection.js');
-const Sequelize = require('sequelize')
+
+let Contact = sequelize.define('contact',  {
+    username: Sequelize.STRING,
+    contactName: Sequelize.STRING,
+    phoneNumber: Sequelize.INTEGER,
+    email: Sequelize.STRING
+});
+
+Contact.sync();
 
 
-module.exports = function(sequelize, DataTypes){
-    var contact= sequelize.define("contact", {
-        routeName: Sequelize.STRING, 
-        name: Sequelize.STRING,
-        phoneNumber: Sequelize.INTEGER,
-        email: Sequelize.STRING
-    })
-    return contact;
-};
+module.exports = Contact;

@@ -1,33 +1,72 @@
+const User = require('../models/users');
 const Contact = require('../models/contacts.js');
 const Transaction = require('../models/transactions.js');
+const Ticker = require('../models/ticker');
+const Auth = require('../models/auth');
+const bcrypt = require('bcrypt');
+
 module.exports = function(app){
-    // getting data to live search ..
-    app.get('/api', function(req, res){
+    // getting data to show all contacts available 
+    app.get('/api/contact', function(req, res){
         Contact.findAll().then(function(result){
             return res.json(result);
         });
     });
 
-    // rendering the data to the div below search bar ..
-    app.post('/api/users', function(req, res){
-        let a = req.body;
-        console.log(res.json(a));
-        
-        characters.push(a);
 
-        console.log(characters);
-
-        // i really don't know wtf is going on here 
+    app.get('/api/transaction', function(req, res){
+        Transaction.findAll().then(function(result){
+            return res.json(result);
+        });
     });
 
+
+
+    // need to add the + id to filer look at Blog CRUD
+    app.get('/api/user/balance', function(req, res){
+        User.findAll().then(function(result){
+            return res.json(result);
+        });
+    });
+
+
+    // for auths get
+    app.get('/api/user/create', function(req, res){
+        Auth.findAll().then(function(result){
+            return res.json(result);
+        });
+    });
+
+
+    app.get('/api/user', function(req, res){
+        Auth.findOne({ 
+            where: {
+            username: user.username
+        }}).then(function(result){
+            return res.json(result);
+        });
+    });
+
+
+    // update the balance when needed
+    app.put('/api/user/balance', function(req, res){
+        User.update(
+            { accountBalance: req.body.accountBalance},
+            { where: {id: 1}}
+            ).success (result =>
+                handleResult(result))
+                .error(err =>
+                    handleError(err));
+    });
+
+
     // add a new contact
-    app.post('/api/newContact', function(req, res){
+    app.post('/api/contact', function(req, res){
         let contact = req.body;
-        let routeName = contact.name.replace(/\s+/g, '').toLowerCase();
 
         Contact.create({
-            routeName: routeName, 
-            name: contact.name,
+            username: contact.username,
+            contactName: contact.contactName,
             phoneNumber : contact.phoneNumber,
             email: contact.email
         });
@@ -36,63 +75,67 @@ module.exports = function(app){
     });
 
     // send a transaction 
-    app.post('/api/newTransaction', function(req, res){
+    app.post('/api/transaction', function(req, res){
         let transaction = req.body;
-        let routeName = transaction.name.replace(/\s+/g, '').toLowerCase();
 
         Transaction.create({
-            routeName: routeName, 
-            name: transaction.name,
-            date: transaction.date, 
-            amount: transaction.amount
+            username: transaction.username,
+            contactName: transaction.contactName,
+            amount: transaction.amount,
+            type: transaction.type,
+            message: transaction.message
         });
 
         res.status(204).end();
-    })
-};
-
-
-
-
-// _____________MAKAH
-
-var db= require("../models");
-var passport= require("../config/passport");
-module.exports = function(app){
-    //if he enters wrong info he will be sent to the members page
-    app.post("/api/login", passport.authenticate("local"), function(req, res){
-res.json("/members");
     });
-//this is for signing up the user if he was successful then he'll be logged in otherwise he'll have an error
-app.post("/api/signup", function(req, res){
-    console.log(req.body);
-    db.user.create({
-        email:req.body.email,
-        password:req.body.password
-    }).then(function(){
-        res.redirect(307, "/api/login");
-    }).catch(function(error){
-        console.log(error);
-        res.json(error);
-    });
-});
-//now this is for loggin out the user
-app.get("logout", function(req, res){
-    req.logout();
-    res.redirect("/");
-});
-//this is for the client side
-app.get("/api/user_data", function(req,res){
-    if (!req.user){
-        //send back empty obj if not logged in
-        res.json({});
-    }
-    else{
-        //sending back a password, even a hashed password, isn't a good idea
-        res.json({
-            email:req.user.email,
-            id:req.user.id
+
+    // send a new stock call 
+    app.post('/api/newTicker', function(req, res){
+        let ticker = req.body;
+
+        Ticker.create({
+            username: ticker.username,
+            tickerSymbol: ticker.tickerSymbol, 
+            quantity: ticker.quantity, 
+            amountBuy: ticker.amountBuy, 
+            amountSell: ticker.amountSell
         });
-    }
-});
+
+        res.status(204).end();
+    });
+
+
+    // // passport
+    app.post('/api/user/create', async function(req, res){
+        let auth = req.body;
+
+        bcrypt.hash(auth.password, 10, function(err, hash){
+            Auth.create({
+                name: auth.name,
+                username: auth.username, 
+                password: hash
+            }).then(function(data){
+                if(data){
+                    res.redirect('/');
+                }
+            });
+        });
+    });
+
+    // checking with passport ?
+    app.post('/api/user', function(user){{
+            if(!user){
+                res.redirect('/');
+            } else {
+                bcrypt.compare(auth.password, user.password, function(err, result){
+                    if (result == true){
+                        res.redirect('/home');
+                    } else {
+                        console.log('incorrect password');
+                        res.redirect('/');
+                    }
+                });
+            }
+        };
+    });
 };
