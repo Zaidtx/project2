@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
     ));
  
  
-    app.get('/dashboard', isLoggedIn, authController.dashboard);
+
  
  
  
