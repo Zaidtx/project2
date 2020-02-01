@@ -1,4 +1,4 @@
-var authController = require('../controllers/authcontroller.js');
+var authController = require('../../app/controllers/authController');
  
   
 module.exports = function(app, passport) {
@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
  
 
  
- 
+    app.get('/dashboard', isLoggedIn, authController.dashboard);
  
     app.get('/logout', authController.logout);
  
@@ -46,4 +46,3 @@ module.exports = function(app, passport) {
     }
  
 }
-

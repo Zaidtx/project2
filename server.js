@@ -6,6 +6,8 @@ var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
 
+
+
 var TeleSignSDK = require('telesignsdk');
 var client  = new TeleSignSDK("13627871-8397-47F8-9C50-4E710B3CC1DE", "GNM5wQGLCETZoz6qlhVnGj5HN4dme131t7fxaE2E2m+G28k/mIRAiBedaA6Ix8DPOr03R98mQl/2O0yYnpUvfQ==");
 
@@ -26,7 +28,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
  
- 
 // For Passport
 app.use(session({
     secret: 'keyboard cat',
@@ -36,6 +37,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
  
+
  
 // //For Handlebars
 // app.set('views', './app/views')
@@ -52,20 +54,21 @@ app.get('/', function(req, res) {
     res.render('first');
 
 });
-app.get('/login', function(req, res) {
-    client.sms.message(callback,"+18329023510", "Someone logged in into your account", "MKT" );
+app.get('/signin', function(req, res) {
+    
  
 
-    res.render('login');
-
+    res.render('signin');
+    client.sms.message(callback,"+18329023510", "Someone logged in into your account", "MKT" );
  
 });
 
 app.get('/signup', function(req, res) {
-    client.sms.message(callback,"+18329023510", "thank you for signing up", "MKT" );
+   
 
 
     res.render('signup');
+    client.sms.message(callback,"+18329023510", "Thank you for signing up", "MKT" );
 
  
 });
@@ -97,7 +100,7 @@ var authRoute = require('./app/routes/auth.js')(app, passport);
  
 //load passport strategies
  
-require('./app/config/passport/passport.js')(passport, models.user);
+require('./app/config/passport/passport')(passport, models.user);
  
 
 //Sync Database

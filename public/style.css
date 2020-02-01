@@ -1,10 +1,82 @@
 
 
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+
+    .sidenav{
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+    .login-form{
+        margin-top: 80%;
+    }
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+
+.login-main-text{
+    margin-top: 20%;
+    padding: 60px;
+    color: #fff;
+}
+
+.login-main-text h2{
+    font-weight: 300;
+}
+
+.btn{
+    background-color: #000 !important;
+    color: #fff;
+    margin-left: 90%;
+}
 body.home{background-image:url(./images/Screen\ Shot\ 2020-01-30\ at\ 1.19.08\ PM.png);
     
-    height: 18%; 
+    height: 5%; 
 
-width: 80%;
+width: 5%;
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,36 +102,11 @@ body.makah{
   
     margin-bottom: 30%;
     text-align: center;
-
-    
-
-
 }
 
 
-.alert {
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 30px
-}
-.closebtn {
-    margin-left: 15px;
-    color: rgb(219, 177, 177);
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-bottom: 70%;
-   height: 100%;
- 
-  }
-  
-  .closebtn:hover {
-    color: black;
-  }
+
+
 
 #signinp{
     margin-bottom: 20%;
@@ -76,29 +123,15 @@ body.makah{
     color: #f44336;
 }
 
-#btnin{
-    color: rgb(231, 135, 111);
-    margin-left: 88%;
-    margin-bottom: 40%;
-    margin-top: 40%;
-}
+
+
 #btninl{
     color: rgb(231, 135, 111);
     margin-left: 7%;
    margin-top: 20%;
 
-   text-align: center;
-}
-#btnsignup{
-    color: rgb(231, 135, 111);
-    margin-bottom: 60%;
-    margin-top: 60%;
-}
-#btncard{
-    margin-left: 92%;
-    margin-bottom: 30%;
-    margin-top: 50%;
-}
+   text-align: center;}
+
 /* fonts & color */
 .subtitles {
     font-size: 20px;
