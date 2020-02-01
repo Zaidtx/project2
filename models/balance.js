@@ -1,24 +1,17 @@
 module.exports = function(sequelize, Sequelize){
-    const Ticker = sequelize.define('ticker', {
+    const Balance = sequelize.define('balance', {
         id: {
             autoIncrement: true, 
             primaryKey: true, 
             type: Sequelize.INTEGER
         }, 
-        tickerSymbol: {
+        name: {
             type: Sequelize.STRING
         }, 
-        price: {
+        accountBalance: {
             type: Sequelize.DECIMAL(10,2)
-        }, 
-        status: {
-            type: Sequelize.STRING
-        }, 
-        ratio: {
-            type: Sequelize.STRING
         }
     });
-    return Ticker;
-  }
-  
-  
+
+    return Balance;
+}

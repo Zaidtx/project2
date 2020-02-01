@@ -1,14 +1,30 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/connection.js');
+module.exports = function(sequelize, Sequelize){
+    const Contact = sequelize.define('contact', {
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER
+        },
+        username: {
+            type: Sequelize.STRING, 
+            notEmpty: true
+        }, 
+        contactName: {
+            type: Sequelize.STRING, 
+            notEmpty: true
+        }, 
+        phoneNumber: {
+            type: Sequelize.STRING
+        }, 
+        email: {
+            type: Sequelize.STRING, 
+        validate: {
+            isEmail: true
+        }}
 
-let Contact = sequelize.define('contact',  {
-    username: Sequelize.STRING,
-    contactName: Sequelize.STRING,
-    phoneNumber: Sequelize.INTEGER,
-    email: Sequelize.STRING
-});
 
-Contact.sync();
+    });
 
+    return Contact;
 
-module.exports = Contact;
+}

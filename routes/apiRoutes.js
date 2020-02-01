@@ -1,56 +1,112 @@
-const User = require('../models/users');
-const Contact = require('../models/contacts.js');
-const Transaction = require('../models/transactions.js');
-const Ticker = require('../models/ticker');
-const Auth = require('../models/auth');
-const bcrypt = require('bcrypt');
+const db = require('../models');
 
-module.exports = function(app){
-    // getting data to show all contacts available 
-    app.get('/api/contact', function(req, res){
-        Contact.findAll().then(function(result){
-            return res.json(result);
+console.log(db);
+module.exports = function (app) {
+
+    console.log(db);
+    console.log(db.Contact);
+
+    app.get('/', function (req, res) {
+        res.render('first');
+    });
+
+    app.get('/login', function (req, res) {
+        res.render('login');
+    });
+
+    app.get('/signup', function (req, res) {
+        res.render('signup');
+    });
+
+    app.get('/logout', function (req, res) {
+        res.render('logout');
+    });
+
+
+    app.get('/api/contact', function (req, res) {
+        db.contact.findAll()
+            .then(function (dbContact) {
+                res.json(dbContact);
+            });
+    });
+
+    app.get('/api/contact', function (callback) {
+        db.contact.findAll()
+            .success(function (contact) {
+                callback(contact);
+            }).error(function (err) {
+                callback(null);
+            });
+    });
+
+    app.get('/api/transaction', function (req, res) {
+        db.transaction.findAll({})
+            .then(function (dbTrans) {
+                res.json(dbTrans);
+            });
+    });
+
+    app.get('/api/transaction', function (callback) {
+        db.transaction.findAll({})
+            .success(function (trans) {
+                callback(trans);
+            }).error(function (err) {
+                callback(null);
+            });
+    });
+
+    app.get('/api/:ticker?', function (req, res) {
+        if (req.params.ticker) {
+            db.ticker.findOne({
+                where: {
+                    tickerSymbol: req.params.ticker
+                }
+            }).then(function (tick) {
+                res.json(tick);
+            });
+        }
+    });
+
+    app.get('/api/balance', function(req, res){
+        db.balance.findAll({})
+        .then(function(dbBal){
+            res.json(dbBal);
+        });
+    });
+
+    app.get('/api/balance', function(req, res){
+        db.balance.findAll({})
+        .success(function (bal) {
+            callback(bal);
+        }).error(function (err) {
+            callback(null);
         });
     });
 
 
-    app.get('/api/transaction', function(req, res){
-        Transaction.findAll().then(function(result){
-            return res.json(result);
+    app.post('/api/contact', function (req, res) {
+        db.contact.create({
+            username: req.body.username,
+            contactName: req.body.contactName,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email
+        });
+    });
+
+    app.post('/api/transaction', function (req, res) {
+        db.transaction.create({
+            username: req.body.username,
+            contactName: req.body.contactName,
+            amount: req.body.amount,
+            type: req.body.type,
+            message: req.body.message
         });
     });
 
 
 
-    // need to add the + id to filer look at Blog CRUD
-    app.get('/api/user/balance', function(req, res){
-        User.findAll().then(function(result){
-            return res.json(result);
-        });
-    });
-
-
-    // for auths get
-    app.get('/api/user/create', function(req, res){
-        Auth.findAll().then(function(result){
-            return res.json(result);
-        });
-    });
-
-
-    app.get('/api/user', function(req, res){
-        Auth.findOne({ 
-            where: {
-            username: user.username
-        }}).then(function(result){
-            return res.json(result);
-        });
-    });
-
-
-    // update the balance when needed
-    app.put('/api/user/balance', function(req, res){
-        User.update(
+    app.put('/api/balance', function(req, res){
+        db.balance.update(
             { accountBalance: req.body.accountBalance},
             { where: {id: 1}}
             ).success (result =>
@@ -60,82 +116,4 @@ module.exports = function(app){
     });
 
 
-    // add a new contact
-    app.post('/api/contact', function(req, res){
-        let contact = req.body;
-
-        Contact.create({
-            username: contact.username,
-            contactName: contact.contactName,
-            phoneNumber : contact.phoneNumber,
-            email: contact.email
-        });
-
-        res.status(204).end();
-    });
-
-    // send a transaction 
-    app.post('/api/transaction', function(req, res){
-        let transaction = req.body;
-
-        Transaction.create({
-            username: transaction.username,
-            contactName: transaction.contactName,
-            amount: transaction.amount,
-            type: transaction.type,
-            message: transaction.message
-        });
-
-        res.status(204).end();
-    });
-
-    // send a new stock call 
-    app.post('/api/newTicker', function(req, res){
-        let ticker = req.body;
-
-        Ticker.create({
-            username: ticker.username,
-            tickerSymbol: ticker.tickerSymbol, 
-            quantity: ticker.quantity, 
-            amountBuy: ticker.amountBuy, 
-            amountSell: ticker.amountSell
-        });
-
-        res.status(204).end();
-    });
-
-
-    // // passport
-    app.post('/api/user/create', async function(req, res){
-        let auth = req.body;
-
-        bcrypt.hash(auth.password, 10, function(err, hash){
-            Auth.create({
-                name: auth.name,
-                username: auth.username, 
-                password: hash
-            }).then(function(data){
-                if(data){
-                    res.redirect('/');
-                }
-            });
-        });
-    });
-
-    // checking with passport ?
-    app.post('/api/user', function(user){{
-            if(!user){
-                res.redirect('/');
-            } else {
-                bcrypt.compare(auth.password, user.password, function(err, result){
-                    if (result == true){
-                        res.redirect('/home');
-                    } else {
-                        console.log('incorrect password');
-                        res.redirect('/');
-                    }
-                });
-            }
-        };
-    });
 };

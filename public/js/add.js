@@ -37,7 +37,9 @@ $('#pay-button').on('click', (e) => {
     let contact = $('#transaction-contact').text().trim();
     let amountPaid = $('#transaction-amount').text().trim();
     let balance = $('#available-balance').text().trim();
-    let newBalance = (parseInt(balance) - parseInt(amountPaid));
+    let newBalance = (parseFloat(balance).toFixed(2) - parseFloat(amountPaid).toFixed(2));
+    console.log(newBalance)
+    let balanceRound = Math.floor(newBalance);
 
     // new transaction object
     let newTransaction = {
@@ -56,17 +58,29 @@ $('#pay-button').on('click', (e) => {
             alert('Paid ' + contact + ' successfully!');
         });
 
+    
+    let now = 0;
+    let cents = Math.abs(balanceRound - newBalance);
+    now += parseFloat($('#savings-balance').text().trim());
+    let newNew = (cents + now).toFixed(2);
+
+    console.log(cents);
+    console.log(now);
+    console.log(newNew);
+
+    $('#savings-balance').text('');
+    $('#savings-balance').append(newNew);
+
+
 
     $('#modal').hide();
     $('#send-to').val('');
     $('#transaction-amount').text('');
     $('#transaction-message').text('');
     $('#available-balance').empty();
-    $('#available-balance').append(newBalance);
+    $('#available-balance').append(balanceRound);
     $('#transaction-contact').empty();
-    $('#transaction-message').text('');
-    // after sending transaction I need to close the modal? 
-    // need to take out amount from total balance and live update it
+    $('#transaction-message').val('');
 });
 
 
@@ -92,47 +106,7 @@ $('#request-button').on('click', (e) => {
     $('#modal').hide();
     $('#send-to').val('');
     $('#transaction-amount').text('');
-    $('#transaction-message').text('');
-    // after sending transaction I need to close the modal? 
-    // need to take out amount from total balance and live update it
+    $('#transaction-message').val('');
 });
 
 
-
-// _____________________________________________
-// passport things 
-$('#register').on('click', (e) => {
-    e.preventDefault();
-
-    let newRegister = {
-        name: $('#name').val().trim(),
-        username: $('#username').val().trim(),
-        password: $('#password').val().trim()
-    };
-    console.log(newRegister);
-
-    $.post('/api/user/create', newRegister)
-    // .then((data) => {
-    //     console.log(data);
-    //     alert('registered successfully!');
-    // });
-});
-
-
-$('#login').on('click', (e) => {
-    e.preventDefault();
-    console.log('y')
-
-    let user = {
-        username: $('#username').val().trim(),
-        password: $('#password').val().trim()
-    };
-    console.log(user)
-
-    $.get('/api/user', user)
-        .then((user) => {
-            console.log(user)
-            $.post('api/user', user);
-        })
-
-});
