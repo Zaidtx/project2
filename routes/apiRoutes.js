@@ -10,16 +10,22 @@ module.exports = function (app) {
         res.render('first');
     });
 
-    app.get('/login', function (req, res) {
-        res.render('login');
+    app.get('/signin', function (req, res) {
+        res.render('signin');
+        // client.sms.message(callback, '+8329023510', 'Someone logged into your account', 'MKT');
     });
 
     app.get('/signup', function (req, res) {
         res.render('signup');
+        // client.sms.message(callback, '+8329023510', 'Thank you for signing up', 'MKT');
     });
 
     app.get('/logout', function (req, res) {
         res.render('logout');
+    });
+
+    app.get('/chat', function (req, res) {
+        res.render('chat');
     });
 
 
