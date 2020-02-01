@@ -1,31 +1,48 @@
 {
-    "development": {
+ 
+  "development": {
+
       "username": "root",
+
       "password": "Makah1998",
-      "database": "passport_db",
+
+      "database": "passport_makah",
+
       "host": "127.0.0.1",
+
       "dialect": "mysql"
-     
-    },
-    
-    "test": {
-      "username": "root",
+
+  },
+
+  "test": {
+
+      "username": "",
+
       "password": null,
-      "database": "database_test",
-      "host": "127.0.0.1",
+
+      "database": "",
+
+      "host": "",
+
       "dialect": "mysql"
-    
-    },
-    "production": {
-      "username": "root",
+
+  },
+
+  "production": {
+
+      "username": "",
+
       "password": null,
-      "database": "database_production",
+
+      "database": "",
+
       "host": "127.0.0.1",
+
       "dialect": "mysql"
-    }
 
   }
-  
+
+}
   
   
   
