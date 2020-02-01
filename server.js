@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
+const session = require('express-session');
 var session = require('cookie-session');
 const env = require('dotenv');
 const exphbs = require('express-handlebars');
