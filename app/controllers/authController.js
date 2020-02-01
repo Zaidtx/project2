@@ -19,10 +19,17 @@ exports.signin = function(req, res) {
  
 exports.dashboard = function(req, res) {
     
-    res.render('./views/dashboard');
+    res.render('dashboard');
 
  
 }
+exports.chat = function(req, res) {
+    
+    res.render('chat');
+
+ 
+}
+
 
 exports.logout = function(req, res) {
  
