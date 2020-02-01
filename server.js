@@ -2,9 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 const app = express();
-const session = require('express-session');
+var session = require('cookie-session');
 const env = require('dotenv');
 const exphbs = require('express-handlebars');
+
+
+
+
 const TeleSignSDK = require('telesignsdk');
 const client  = new TeleSignSDK("13627871-8397-47F8-9C50-4E710B3CC1DE", "GNM5wQGLCETZoz6qlhVnGj5HN4dme131t7fxaE2E2m+G28k/mIRAiBedaA6Ix8DPOr03R98mQl/2O0yYnpUvfQ==");
 
@@ -55,11 +59,12 @@ require('./routes/auth.js')(app, passport);
 // For Passport
 app.use(session({
     secret: 'keyboard cat',
-    resave: true,
+    resave: false,
     saveUninitialized: true
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
 
 
 db.sequelize.sync({}).then(function () {
