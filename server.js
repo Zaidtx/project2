@@ -1,33 +1,34 @@
-var express = require('express')
-var app = express()
-var passport = require('passport')
-var session = require('express-session')
-var bodyParser = require('body-parser')
-var env = require('dotenv')
-var exphbs = require('express-handlebars')
+const express = require('express');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+const app = express();
+const session = require('express-session');
+const env = require('dotenv');
+const exphbs = require('express-handlebars');
 
+const PORT = process.env.PORT || 3000
+const db = require("./models");
 
-
-var TeleSignSDK = require('telesignsdk');
-var client  = new TeleSignSDK("13627871-8397-47F8-9C50-4E710B3CC1DE", "GNM5wQGLCETZoz6qlhVnGj5HN4dme131t7fxaE2E2m+G28k/mIRAiBedaA6Ix8DPOr03R98mQl/2O0yYnpUvfQ==");
-
-callback = function(err, resBody){
-    if(err){
-        console.log(err)
-    }else{
-        console.log("success!!");
-        console.log(resBody);
-    }
-}
-
-
-app.use(express.static(__dirname+ "/public" ));
-//For BodyParser
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
- 
+app.use(express.json());
+
+app.use(express.static('public'));
+
+
+// For Handlebars
+app.engine(`handlebars`, exphbs({
+    defaultLayout: `main`
+}));
+app.set(`view engine`, `handlebars`);
+
+// ROUTES
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
+require('./routes/passport.js')(passport, db.user);
+require('./routes/auth.js')(app, passport);
+
 // For Passport
 app.use(session({
     secret: 'keyboard cat',
@@ -36,102 +37,26 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
- 
-
- 
-// //For Handlebars
-// app.set('views', './app/views')
-// app.engine('hbs', exphbs({
-//     extname: '.hbs'
-// }));
-// app.set('view engine', '.hbs');
- 
-app.engine(`handlebars`, exphbs({ defaultLayout: `main` }));
-app.set(`view engine`, `handlebars`);
- 
-app.get('/', function(req, res) {
-
-    res.render('first');
-
-});
-app.get('/signin', function(req, res) {
-    
- 
-
-    res.render('signin');
-    client.sms.message(callback,"+18329023510", "Someone logged in into your account", "MKT" );
- 
-});
-
-app.get('/signup', function(req, res) {
-   
 
 
-    res.render('signup');
-    client.sms.message(callback,"+18329023510", "Thank you for signing up", "MKT" );
-
- 
-});
-app.get('/dashboard', function(req, res) {
-
-    res.render('dashboard');
-
- 
-});
-
-app.get('/logout', function(req, res) {
-
-    res.render('logout');
-
- 
-});
-app.get('/chat', function(req, res) {
-
-    res.render('chat');
-
- 
+db.sequelize.sync({}).then(function () {
+    app.listen(PORT, function () {
+        console.log("App listening on PORT " + PORT);
+    });
 });
 
 
 
 
- 
-//Models
-var models = require("./app/models");
 
- 
-//Routes
- 
-var authRoute = require('./app/routes/auth.js')(app, passport);
- 
- 
-//load passport strategies
- 
-require('./app/config/passport/passport')(passport, models.user);
- 
+const TeleSignSDK = require('telesignsdk');
+let client = new TeleSignSDK("13627871-8397-47F8-9C50-4E710B3CC1DE", "GNM5wQGLCETZoz6qlhVnGj5HN4dme131t7fxaE2E2m+G28k/mIRAiBedaA6Ix8DPOr03R98mQl/2O0yYnpUvfQ==");
 
-//Sync Database
-
- 
-models.sequelize.sync().then(function() {
- 
-    console.log('Nice! Database looks fine')
- 
- 
-}).catch(function(err) {
- 
-    console.log(err, "Something went wrong with the Database Update!")
- 
-});
-
-
- const PORT = process.env.PORT || 3000
-app.listen(PORT , function(err) {
- 
-    if (!err)
- 
-        console.log("Site is live");
-         
-    else console.log(err)
- 
-});
+callback = function (err, resBody) {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log("success!!");
+        console.log(resBody);
+    }
+}
