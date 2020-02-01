@@ -55,11 +55,12 @@ require('./routes/auth.js')(app, passport);
 // For Passport
 app.use(session({
     secret: 'keyboard cat',
-    resave: true,
+    resave: false,
     saveUninitialized: true
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
 
 
 db.sequelize.sync({}).then(function () {
